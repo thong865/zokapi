@@ -1,0 +1,496 @@
+openapi: "3.0.0"
+info:
+  title: "ZOKXAY APPARTMENT API"
+  version: "1.0.0"
+  description: ""
+components:
+  responses:
+    Forbidden:
+      description: "Access token is missing or invalid"
+    Accepted:
+      description: "The request was accepted"
+    Created:
+      description: "The resource has been created"
+    NotFound:
+      description: "The resource has been created"
+    NotAcceptable:
+      description: "The resource has been created"
+  securitySchemes:
+    BearerAuth:
+      type: "http"
+      scheme: "bearer"
+    BasicAuth:
+      type: "http"
+      scheme: "basic"
+    ApiKeyAuth:
+      type: "apiKey"
+      in: "header"
+      name: "X-API-Key"
+  schemas:
+    Any:
+      description: "Any JSON object not defined as schema"
+    PaginationMeta:
+      type: "object"
+      properties:
+        total:
+          type: "number"
+          example: 100
+          nullable: false
+        page:
+          type: "number"
+          example: 2
+          nullable: false
+        perPage:
+          type: "number"
+          example: 10
+          nullable: false
+        currentPage:
+          type: "number"
+          example: 3
+          nullable: false
+        lastPage:
+          type: "number"
+          example: 10
+          nullable: false
+        firstPage:
+          type: "number"
+          example: 1
+          nullable: false
+        lastPageUrl:
+          type: "string"
+          example: "/?page=10"
+          nullable: false
+        firstPageUrl:
+          type: "string"
+          example: "/?page=1"
+          nullable: false
+        nextPageUrl:
+          type: "string"
+          example: "/?page=6"
+          nullable: false
+        previousPageUrl:
+          type: "string"
+          example: "/?page=5"
+          nullable: false
+    Booking:
+      type: "object"
+      properties:
+        static_table_bookings:
+          type: "string"
+          example: "string"
+        id:
+          type: "number"
+          example: 801
+        istype:
+          type: "string"
+          example: "string"
+        book_ref:
+          type: "string"
+          example: "string"
+        cust_no:
+          type: "string"
+          example: "string"
+        rm_no:
+          type: "string"
+          example: "string"
+        book_date:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        last_pay_date:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        last_pay_amount:
+          type: "number"
+          example: 303
+        total_val:
+          type: "number"
+          example: 481
+        ccy:
+          type: "string"
+          example: "string"
+        frezen_amount:
+          type: "number"
+          example: 385
+        frezen_ccy:
+          type: "string"
+          example: "string"
+        maker:
+          type: "string"
+          example: "string"
+        created_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        updated_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        invoice:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/BookingInvoice"
+            example: "string"
+        customers:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/Customer"
+            example: "string"
+      description: "Booking (Model)"
+    BookingInvoice:
+      type: "object"
+      properties:
+        static_table_booking_invoices:
+          type: "string"
+          example: "string"
+        id:
+          type: "number"
+          example: 690
+        book_id:
+          type: "string"
+          example: "string"
+        inv_id:
+          type: "string"
+          example: "string"
+        rm_no:
+          type: "string"
+          example: "string"
+        cs_no:
+          type: "string"
+          example: "string"
+        inv_date:
+          type: "string"
+          example: "string"
+        sr_code:
+          type: "string"
+          example: "string"
+        sr_unit:
+          type: "number"
+          example: 863
+        sr_price:
+          type: "number"
+          example: 451
+        ccy:
+          type: "string"
+          example: "string"
+        created_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        updated_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+      description: "BookingInvoice (Model)"
+    Customer:
+      type: "object"
+      properties:
+        static_table_customers:
+          type: "string"
+          example: "string"
+        id:
+          type: "number"
+          example: 651
+        cs_no:
+          type: "string"
+          example: "string"
+        roomno:
+          type: "string"
+          example: "string"
+        mobile:
+          type: "string"
+          example: "string"
+        firstname:
+          type: "string"
+          example: "string"
+        lastname:
+          type: "string"
+          example: "string"
+        isuser:
+          type: "boolean"
+          example: true
+        created_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        updated_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+      description: "Customer (Model)"
+    Room:
+      type: "object"
+      properties:
+        static_table_rooms:
+          type: "string"
+          example: "string"
+        id:
+          type: "number"
+          example: 302
+        rm_no:
+          type: "string"
+          example: "string"
+        book_date:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        last_due_date:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        next_due_date:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        price:
+          type: "number"
+          example: 10.5
+        ccy:
+          type: "string"
+          example: "string"
+        cycle_unit:
+          type: "string"
+          example: "string"
+        stat:
+          type: "string"
+          example: "string"
+        created_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        updated_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        services:
+          type: "array"
+          items:
+            $ref: "#/components/schemas/RoomAsset"
+            example: "string"
+        booking:
+          $ref: "#/components/schemas/Booking"
+          example: "string"
+      description: "Room (Model)"
+    RoomAsset:
+      type: "object"
+      properties:
+        static_table_room_assets:
+          type: "string"
+          example: "string"
+        id:
+          type: "number"
+          example: 244
+        rm_no:
+          type: "number"
+          example: 850
+        sr_code:
+          type: "string"
+          example: "string"
+        sr_title:
+          type: "string"
+          example: "string"
+        bill_name:
+          type: "string"
+          example: "string"
+        bill_amt_deb:
+          type: "string"
+          example: "string"
+        sr_bill_no:
+          type: "string"
+          example: "string"
+        sr_bill_date:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        sr_bill_curdeb:
+          type: "number"
+          example: 31
+        created_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        updated_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+      description: "RoomAsset (Model)"
+    User:
+      type: "object"
+      properties:
+        id:
+          type: "number"
+          example: 681
+        firstname:
+          type: "string"
+          example: "string"
+        lastname:
+          type: "string"
+          example: "string"
+        mobile:
+          type: "string"
+          example: "string"
+        password:
+          type: "string"
+          example: "S3cur3P4s5word!"
+          format: "password"
+        created_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+        updated_at:
+          type: "string"
+          example: "2021-03-23T16:13:08.489+01:00"
+          format: "date-time"
+      description: "User (Model)"
+paths:
+  /api/v1/login:
+    post:
+      summary: " login"
+      description: "\n\n _app/controllers/users/users_controller.ts_ - **loginUser**"
+      parameters: []
+      tags:
+        - "V1"
+      responses:
+        201:
+          description: "Created"
+          content:
+            application/json: {}
+      security: []
+      requestBody:
+        content:
+          application/json: {"login_type":"Enum"}
+  /api/v1/register:
+    post:
+      summary: " (storeUser)"
+      description: "\n\n _app/controllers/users/users_controller.ts_ - **storeUser**"
+      parameters: []
+      tags:
+        - "V1"
+      responses:
+        201:
+          description: "Created"
+          content:
+            application/json: {}
+      security: []
+      requestBody:
+        content:
+          application/json: {}
+  /api/v1/room/{rm_no}/detail:
+    get:
+      summary: " (getDetailRoom)"
+      description: "\n\n _app/controllers/rooms_controller.ts_ - **getDetailRoom**"
+      parameters:
+        - in: "path"
+          name: "rm_no"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - "V1"
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json: {}
+      security: []
+  /api/v1/rooms:
+    get:
+      summary: " (listRooms)"
+      description: "\n\n _app/controllers/rooms_controller.ts_ - **listRooms**"
+      parameters: []
+      tags:
+        - "V1"
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json: {}
+      security: []
+  /api/v1/room:
+    post:
+      summary: " (storeRoom)"
+      description: "\n\n _app/controllers/rooms_controller.ts_ - **storeRoom**"
+      parameters: []
+      tags:
+        - "V1"
+      responses:
+        201:
+          description: "Created"
+          content:
+            application/json: {}
+      security: []
+      requestBody:
+        content:
+          application/json: {}
+  /api/v1/room/booking:
+    post:
+      summary: " (roomBooking)"
+      description: "\n\n _app/controllers/books_controller.ts_ - **roomBooking**"
+      parameters: []
+      tags:
+        - "V1"
+      responses:
+        201:
+          description: "Created"
+          content:
+            application/json: {}
+      security: []
+      requestBody:
+        content:
+          application/json: {}
+  /api/v1/roombkcurr/{rm_no}:
+    post:
+      summary: " (getCustomerBooking)"
+      description: "\n\n _app/controllers/books_controller.ts_ - **getCustomerBooking**"
+      parameters:
+        - in: "path"
+          name: "rm_no"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - "V1"
+      responses:
+        201:
+          description: "Created"
+          content:
+            application/json: {}
+      security: []
+      requestBody:
+        content:
+          application/json: {}
+  /api/v1/booking/invoice:
+    get:
+      summary: " (getInvoiceDetail)"
+      description: "\n\n _app/controllers/books_controller.ts_ - **getInvoiceDetail**"
+      parameters: []
+      tags:
+        - "V1"
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json: {}
+      security: []
+  /api/v1/services/{srv_id}:
+    get:
+      summary: " (getService)"
+      description: "\n\n _app/controllers/services_controller.ts_ - **getService**"
+      parameters:
+        - in: "path"
+          name: "srv_id"
+          schema:
+            type: "string"
+          required: true
+      tags:
+        - "V1"
+      responses:
+        200:
+          description: "OK"
+          content:
+            application/json: {}
+      security: []
+tags:
+  - name: "V1"
+    description: "Everything related to V1"
